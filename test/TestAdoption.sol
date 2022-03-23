@@ -26,7 +26,14 @@ contract TestAdoption {
 
 
 
+  // Testing the adopt() function
+  // We can ensure an ID was returned and that it's correct by 
+  // comparing the return value of adopt() to the ID we passed in
+  function testUserCanAdoptPet() public {
+    uint returnedId = adoption.adopt(expectedPetId);
 
+    Assert.equal(returnedId, expectedPetId, "Adoption of the expected pet should match what is returned.");
+}
 
-
+ 
 }
