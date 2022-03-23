@@ -18,3 +18,12 @@ function adopt(uint petId) public returns (uint) {
 
   return petId;
 }
+
+// Retrieving the adopters to return entire array
+// specify the type for adopters =  address[16] memory
+// memory gives the data location for the variable
+function getAdopters() public view returns (address[16] memory) {
+
+//   Since adopters is already declared, we can simply return it  
+  return adopters;
+}
