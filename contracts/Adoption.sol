@@ -1,9 +1,9 @@
-pragma  solidity ^0.5.0;
+pragma solidity ^0.5.0;
 
 contract Adoption {
     // declared  adoption variable as an array w 16 items
     address[16] public adopters;
-}
+
 
 // in solidity, data types of paramateers + output must be specified
 // in this case they are intergers
@@ -36,3 +36,5 @@ function getAdopters() public view returns (address[16] memory) {
 // SMART CONTRACT ABOVE READY TO COMPILE 
 // In a terminal, make sure you are in the root dapp and type:
 // truffle compile
+
+}
