@@ -71,9 +71,34 @@ App = {
   },
 
   markAdopted: function () {
-    /*
-     * Replace me...
-     */
+    var adoptionInstance;
+    // access the deployed Adoption contract
+    // then call getAdopters() on that instance.
+    App.contracts.Adoption.deployed()
+      .then(function (instance) {
+        adoptionInstance = instance;
+        // Using call() allows us to read data from the blockchain
+        // w/o having to send a full transaction so
+        // we won't have to spend any ether.
+        return adoptionInstance.getAdopters.call();
+      })
+
+      // loop through adopters, checking for address stored for each pet
+      .then(function (adopters) {
+        for (i = 0; i < adopters.length; i++) {
+          // Etherium is storing address as all 0's, not empty string
+          if (adopters[i] !== "0x0000000000000000000000000000000000000000") {
+            $(".panel-pet")
+              .eq(i)
+              .find("button")
+              .text("Success")
+              .attr("disabled", true);
+          }
+        }
+      })
+      .catch(function (err) {
+        console.log(err.message);
+      });
   },
 
   handleAdopt: function (event) {
