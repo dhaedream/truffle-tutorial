@@ -33,6 +33,19 @@ contract TestAdoption {
     uint returnedId = adoption.adopt(expectedPetId);
 
     Assert.equal(returnedId, expectedPetId, "Adoption of the expected pet should match what is returned.");
+   }
+
+
+
+
+  // Since arrays can only return a single value given a single key, 
+  // we create our own getter for the entire array.
+   // Testing retrieval of all pet owners
+function testGetAdopterAddressByPetIdInArray() public {
+  // Store adopters in memory rather than contract's storage
+  address[16] memory adopters = adoption.getAdopters();
+
+  Assert.equal(adopters[expectedPetId], expectedAdopter, "Owner of the expected pet should be this contract");
 }
 
  
